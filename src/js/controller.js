@@ -9,6 +9,10 @@ import 'regenerator-runtime/runtime';
 
 ///////////////////////////////////////
 
+if(module.hot){
+  module.hot.accept()
+}
+
 const controlRecipes = async function() {
   try {
     // Save recipe hash
