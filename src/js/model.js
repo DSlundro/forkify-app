@@ -1,3 +1,4 @@
+import { async } from "regenerator-runtime";
 import { API_URL } from "./config";
 import { getJSON } from "./helpers";
 
@@ -5,12 +6,19 @@ import { getJSON } from "./helpers";
 
 export const state = {
     recipe: {},
+    search: {
+        query: '',
+        results: [],
+    },
 }
-
+/**
+ * 
+ * @param {String} id 
+ */
 export const loadRecipe = async function(id) {
     try{
     // Get data by recipe id
-    const data = await getJSON(`${API_URL}/${id}`)
+    const data = await getJSON(`${API_URL}${id}`)
     // Destructure data
     const { recipe } = data.data
     // Save data in global variable and rename some of them
@@ -29,6 +37,28 @@ export const loadRecipe = async function(id) {
     throw err;
     }
 }
+/**
+ * 
+ * @param {String} query 
+ */
+export const loadSearchResults = async function(query) {
+    try {
+        state.search.query = query;
+        const data = await getJSON(`${API_URL}?search=${query}`);
+        console.log(data);
 
-
+        state.search.results = data.data.recipes.map( rec => {
+            return {
+                id: rec.id,
+                title: rec.title,
+                sourceUrl: rec.source_url,
+                image: rec.image_url,
+            }
+        })
+        
+    } catch (err) {
+        console.log(err);
+        throw err
+    }
+}
 
