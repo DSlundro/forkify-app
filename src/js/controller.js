@@ -8,8 +8,9 @@ import 'regenerator-runtime/runtime';
 
 const controlRecipes = async function() {
   try {
+    // Save recipe hash
     const id = window.location.hash.slice(1);
-
+    
     if(!id) return;
     recipeView.renderSpinner();
     
@@ -18,12 +19,13 @@ const controlRecipes = async function() {
 
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
-  } catch (error) {
-    alert(error);
+  } catch (err) {
+    recipeView.renderError();
   }
 }
 
 const init = function() {
   recipeView.addHandlerRender(controlRecipes)
 }
-init()
+init();
+
