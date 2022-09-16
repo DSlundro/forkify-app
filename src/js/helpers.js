@@ -12,10 +12,17 @@ const timeout = function (s) {
         });
     };
 
-export const getJSON = async function(url){
+export const AJAX = async function(url, uploadData = undefined){
     try {
+        const fetchPro = uploadData ? fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(uploadData),
+        }) : fetch(url);
         // Returns a faster value, if a promise returns a timeout it will gives an error
-        const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
+        const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
         // Transform response data in json
         const data = await res.json()
         // Check if the status isn't ok, so generate a new error
@@ -27,4 +34,3 @@ export const getJSON = async function(url){
         throw err;
     }
 }
-
