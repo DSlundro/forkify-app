@@ -17,7 +17,7 @@ export const state = {
 export const loadRecipe = async function(id) {
     try{
     // Get data by recipe id
-    const data = await getJSON(`${API_URL}${id}?key=${API_KEY}`)
+    const data = await getJSON(`${API_URL}${id}`)
     // Destructure data
     const { recipe } = data.data
     // Save data in global variable and rename some of them
@@ -51,7 +51,7 @@ export const loadSearchResults = async function(query) {
                 publisher: rec.publisher
             }
         })
-        
+    state.search.page = 1;
     } catch (err) {
         console.log(err);
         throw err
