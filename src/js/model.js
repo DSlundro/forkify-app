@@ -1,5 +1,5 @@
 import { async } from "regenerator-runtime";
-import { API_URL } from "./config";
+import { API_KEY, API_URL } from "./config";
 import { getJSON } from "./helpers";
 
 ///////////////////////////////////////////////////
@@ -17,7 +17,7 @@ export const state = {
 export const loadRecipe = async function(id) {
     try{
     // Get data by recipe id
-    const data = await getJSON(`${API_URL}${id}`)
+    const data = await getJSON(`${API_URL}${id}?key=${API_KEY}`)
     // Destructure data
     const { recipe } = data.data
     // Save data in global variable and rename some of them

@@ -14,9 +14,6 @@ export default class View {
 
     update(data){
         /* COMPARE OLD AND NEW MARKUP AND CHANGE ONLY VALUE AND ATTRIBUTES THAT CHANGED FROM OLD TO NEW MARKUP */
-
-        // Check if there are some data and if array's lenght of data isn't 0
-        if(!data || (Array.isArray(data) && data.length === 0))  return this.renderError();
         
         // Data from recipe
         this._data = data;
