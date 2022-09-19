@@ -19,7 +19,8 @@
   "homepage": "https://github.com/DSlundro/forkify-app#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0",
-    "parcel": "^2.7.0"
+    "parcel": "^2.7.0",
+    "parcel-optimizer-css-url": "^2.0.2"
   },
   "dependencies": {
     "core-js": "^3.25.1",

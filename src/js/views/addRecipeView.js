@@ -1,5 +1,4 @@
 import View from './View';
-import icons from 'url:../../img/icons.svg';
 
 //////////////////////////////////////////////////////
 
@@ -40,10 +39,6 @@ class AddRecipeView extends View {
             handler(data);
 
         })
-    }
-
-    _generateMarkup() {
-
     }
 
 }
